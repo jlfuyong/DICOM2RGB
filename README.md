@@ -12,83 +12,6 @@ A c++ class using for convert DICOM PixelData to RGB Data
 Demo VS2015 like :
 
 
-// FTTestDlg.cpp
-//
-
-#include "stdafx.h"
-#include "FTTest.h"
-#include "FTTestDlg.h"
-#include "afxdialogex.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
-
-
-
-class CAboutDlg : public CDialogEx
-{
-public:
-	CAboutDlg();
-
-
-#ifdef AFX_DESIGN_TIME
-	enum { IDD = IDD_ABOUTBOX };
-#endif
-
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
-
-
-protected:
-	DECLARE_MESSAGE_MAP()
-};
-
-CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
-{
-}
-
-void CAboutDlg::DoDataExchange(CDataExchange* pDX)
-{
-	CDialogEx::DoDataExchange(pDX);
-}
-
-BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
-END_MESSAGE_MAP()
-
-
-
-CFTTestDlg::CFTTestDlg(CWnd* pParent /*=NULL*/)
-	: CDialogEx(IDD_FTTEST_DIALOG, pParent)
-{
-	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
-}
-
-void CFTTestDlg::DoDataExchange(CDataExchange* pDX)
-{
-	CDialogEx::DoDataExchange(pDX);
-	//	DDX_Control(pDX, IDC_DICOMCTRLCTRL1, m_dcmCtrl);
-	//	DDX_Control(pDX, IDC_STATIC_FTIMAGE, m_stcFTImage);
-	DDX_Control(pDX, IDC_DICOMCTRLCTRL1, m_DICOMCtrl);
-	DDX_Control(pDX, IDC_EDIT1, m_edtTimer);
-	DDX_Control(pDX, IDC_STATIC_IMAGE, m_stcImage);
-}
-
-BEGIN_MESSAGE_MAP(CFTTestDlg, CDialogEx)
-	ON_WM_SYSCOMMAND()
-	ON_WM_PAINT()
-	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(IDC_BUTTON1, &CFTTestDlg::OnBnClickedButton1)
-//	ON_BN_CLICKED(IDC_STATIC_FTIMAGE, &CFTTestDlg::OnBnClickedStaticFtimage)
-ON_BN_CLICKED(IDC_BUTTON2, &CFTTestDlg::OnBnClickedButton2)
-ON_WM_DESTROY()
-ON_WM_MOUSEMOVE()
-ON_WM_LBUTTONDOWN()
-ON_BN_CLICKED(IDC_BUTTON3, &CFTTestDlg::OnBnClickedButton3)
-END_MESSAGE_MAP()
-
-
-
 
 BOOL CFTTestDlg::OnInitDialog()
 {
@@ -118,7 +41,7 @@ BOOL CFTTestDlg::OnInitDialog()
 
 
 	m_pDICOMRGBMap = NULL;
-	//m_pRAWData = NULL;
+
 	return TRUE;
 }
 
