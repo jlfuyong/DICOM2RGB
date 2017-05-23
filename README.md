@@ -208,11 +208,9 @@ void CFTTestDlg::OnBnClickedButton1()
 	}
 	else return;
 
-	//m_DICOMCtrl.DeleteAllImage();
-	//m_DICOMCtrl.AddImage((char*)(LPCTSTR)szFileName);
 	BeginWaitCursor();
 	DWORD dTickBegin = GetTickCount();
-	//CString szFileName = "f:\\testimage\\ftimage\\1.dcm";
+	
 	CString szRAWFileName = "";
 	szRAWFileName.Format("%s.raw", szFileName);
 	DCMObj elemList;
@@ -317,20 +315,8 @@ void CFTTestDlg::OnBnClickedButton1()
 	m_pDICOMRGBMap->m_pDCMRGBModLUTInfo->dRescSlope = dcmModLUTInfo.dRescSlope;
 	m_pDICOMRGBMap->m_pDCMRGBModLUTInfo->bRescale = dcmModLUTInfo.bRescale;
 
-//	m_nLevel = 40;
-//	m_nWindow = 220;
 	m_pDICOMRGBMap->DCMRGBInit(pRAWData, m_nWindow, m_nLevel);
 	delete[]pRAWData;
-
-	//CString szRAWOutFileName = "";
-	//CTime tm = CTime::GetCurrentTime();
-	//szRAWOutFileName.Format("C:\\%s", tm.Format("%Y%m%d%H%M%S"));
-	//FILE *fpWrite = fopen((char*)(LPCTSTR)szRAWOutFileName, "wb");
-	//if (fpWrite == NULL) {
-	//	AfxMessageBox("fopen failure.");
-	//}
-	//size_t st = fwrite(m_pDICOMRGBMap->m_pRAWDataOut, sizeof(BYTE), dcmImgPixInfo.sColumns*dcmImgPixInfo.sRows *3, fpWrite);
-	//fclose(fpWrite);
 
 	CRect rcImage;
 	m_stcImage.GetClientRect(&rcImage);
@@ -387,38 +373,3 @@ void CFTTestDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	CDialogEx::OnLButtonDown(nFlags, point);
 }
 
-
-void CFTTestDlg::OnBnClickedButton3()
-{
-	char szErrorMsg[1024] = { 0 };
-//	DCMConvertFile("F:\\TestImage\\ftimage\\XA", "F:\\TestImage\\ftimage\\XA.JPG", DCM_CONVERT_J2K_ICON,0, szErrorMsg);
-	DCMObj elemListPatInfo;
-	DCMElemListCreate(&elemListPatInfo, szErrorMsg);
-	DCMElemListElemAdd(&elemListPatInfo, 0x00100010, "TestPatient", szErrorMsg);
-	DCMElemListElemAdd(&elemListPatInfo, 0x00100020, "TestPatientID", szErrorMsg);
-	DCMElemListElemAdd(&elemListPatInfo, 0x00100040, "M", szErrorMsg);
-	DCMElemListElemAdd(&elemListPatInfo, 0x00100030, "19980907", szErrorMsg);
-	DCMElemListElemAdd(&elemListPatInfo, 0x00080005, "GB18030", szErrorMsg);
-	//CCreateUID::Create();
-	//CString szUIDHeader = "1.79.386";
-	//CString szUID = CCreateUID::GetMe()->CreateUID(szUIDHeader);
-	DCMElemListElemAdd(&elemListPatInfo, 0x0020000D, "1.79.386.1234567890", szErrorMsg);
-	DCMElemListElemAdd(&elemListPatInfo, 0x00080020, "20170518", szErrorMsg);
-	DCMElemListElemAdd(&elemListPatInfo, 0x00080030, "103121", szErrorMsg);
-	DCMElemListElemAdd(&elemListPatInfo, 0x00080090, "RefPhyName", szErrorMsg);
-	DCMElemListElemAdd(&elemListPatInfo, 0x00200010, "StudyID", szErrorMsg);
-
-
-	DCMElemListElemAdd(&elemListPatInfo, 0x00080050, "AcessNo", szErrorMsg);
-	DCMElemListElemAdd(&elemListPatInfo, 0x0020000e, "1.79.386.1234567891", szErrorMsg);
-	DCMElemListElemAdd(&elemListPatInfo, 0x00200011, "SeriesNo", szErrorMsg);
-	DCMElemListElemAdd(&elemListPatInfo, 0x00080070, "FTImage", szErrorMsg);
-	DCMSaveFile("f:\\testimage\\ftimage\\DCMImg2DCM.pat", &elemListPatInfo, szErrorMsg);
-	DCMElemListDestroy(&elemListPatInfo);
-
-	DCMImg2DCM("f:\\testimage\\ftimage\\2j2kjpeg.dcm.jpg", "f:\\testimage\\ftimage\\dcmimg2dcm.dcm", "f:\\testimage\\ftimage\\dcmimg2dcm.pat", szErrorMsg);
-	//DCMConvertFile("f:\\testimage\\ftimage\\2", "f:\\testimage\\ftimage\\XAj2k.dcm", DCM_CONVERT_J2K_DCM, 0, szErrorMsg);
-	//DCMConvertFile("f:\\testimage\\ftimage\\XA", "f:\\testimage\\ftimage\\XAj2kicon.dcm", DCM_CONVERT_J2K_ICON, 0, szErrorMsg);
-	//DCMConvertFile("f:\\testimage\\ftimage\\XA", "f:\\testimage\\ftimage\\XAj2kjpeg.dcm", DCM_CONVERT_J2K, 0, szErrorMsg);
-	//DCMConvertFile("f:\\testimage\\ftimage\\XA", "f:\\testimage\\ftimage\\XAxml.dcm", DCM_CONVERT_XML, 0, szErrorMsg);
-}
