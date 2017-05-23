@@ -184,6 +184,8 @@ void flipIt(void* buffer, long nSize)
 			jnz label
 	}
 }
+
+
 void CFTTestDlg::SaveToBmpAndBlend(BYTE *buffer)
 {
 	HDC hdc;
