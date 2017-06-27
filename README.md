@@ -11,8 +11,9 @@ A c++ class using for convert DICOM PixelData to RGB Data
 
 Demo VS2015 like :
 
-void test()
-{
+
+
+
 	CString szRAWFileName = "";
 	szRAWFileName.Format("%s.raw", szFileName);
 	DCMObj elemList;
@@ -120,6 +121,5 @@ void test()
 	m_pDICOMRGBMap->DCMRGBInit(pRAWData, m_nWindow, m_nLevel);
 	delete[]pRAWData;
 
-}
 
 
